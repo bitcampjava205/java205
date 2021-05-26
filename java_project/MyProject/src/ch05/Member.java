@@ -119,7 +119,7 @@ public class Member {
 		Member member1 = new Member("철수", "010-0000-0000", "음악", 4, "ch@gmail.com", "2000-10-01", "서울");
 		member1.name = "영희";
 		member1.showInfo();
-		//member1.phoneNumber = "00000000";
+		// member1.phoneNumber = "00000000";
 		
 		
 		System.out.println("==========================");
