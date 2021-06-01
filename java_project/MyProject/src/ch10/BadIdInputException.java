@@ -6,4 +6,6 @@ public class BadIdInputException extends Exception {
 		super(message);
 	}
 
+	
+	
 }

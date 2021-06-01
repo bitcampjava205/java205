@@ -4,7 +4,9 @@ public class RunTimeTest {
 
 	public static void main(String[] args) {
 		
-		long startTime = System.currentTimeMillis();
+		long startTime = System.currentTimeMillis(); // 1970.01.01 00:00:00
+		long sTime = System.nanoTime();
+		System.out.println(sTime);
 		
 		long sum = 0;
 		

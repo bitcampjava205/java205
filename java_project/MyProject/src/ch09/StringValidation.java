@@ -8,7 +8,7 @@ public class StringValidation {
 		
 		Scanner scanner = new Scanner(System.in);
 		
-		System.out.println("영문이름을 입력해주세요 >>");
+		System.out.println("영문이름을 입력해주세요 >>"); //  __    abc
 		String name = scanner.nextLine();
 		
 		if(name != null && !name.trim().isEmpty()) {

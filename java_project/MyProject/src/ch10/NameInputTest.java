@@ -21,9 +21,8 @@ public class NameInputTest {
 					
 					throw new BadIdInputException("잘못된 이름 입력 오류");
 					
-				} catch (BadIdInputException e) {
-					System.out.println(e.getMessage());
-					//e.printStackTrace();
+				}  catch (Exception e) {
+					
 				}
 			}
 			

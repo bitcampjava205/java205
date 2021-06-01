@@ -19,8 +19,10 @@ public class NumberInputTest {
 
 		} catch (InputMismatchException e) {
 			System.out.println("입력하시는 데이터는 숫자가 아닙니다.");
-			e.printStackTrace();
+			//e.printStackTrace();
 		}
+		
+		System.out.println("프로그램 종료");
 
 	}
 
