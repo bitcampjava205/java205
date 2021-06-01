@@ -41,7 +41,30 @@ class SimpleNumber{
 	SimpleNumber(int num){
 		this.num = num;
 	}
+
+
+	@Override
+	public int hashCode() {
+		return num%3;	// 0, 1, 2
+	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		
+		boolean result = false;
+		
+		// obj 는 null 이 아니고, obj 는 SimpleNumber타입으로 형변환이 가능
+		if(obj != null && obj instanceof SimpleNumber) {
+			SimpleNumber sNum = (SimpleNumber) obj;
+			if(this.num == sNum.num) {
+				result = true;
+			}
+		}
+		
+		return result;
+	}
+
+
 	public String toString() {
 		return String.valueOf(num);
 	}
