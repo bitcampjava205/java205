@@ -34,7 +34,7 @@ public class HashSetTest {
 
 }
 
-class SimpleNumber{
+class SimpleNumber {
 	
 	int num;
 	
