@@ -15,7 +15,7 @@ public class IteratorTest {
 		list.add("First");
 		list.add("Second");
 		list.add("Third");
-		list.add("Fourth");
+		list.add("First");
 		
 		for(int i=0; i<list.size(); i++) {
 			System.out.println(list.get(i));
