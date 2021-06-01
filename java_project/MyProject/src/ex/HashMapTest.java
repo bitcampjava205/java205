@@ -2,6 +2,7 @@ package ex;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class HashMapTest {
 
@@ -22,6 +23,9 @@ public class HashMapTest {
 		System.out.println(map.get(1));
 		System.out.println(map.get(8));
 		System.out.println(map.get(10));
+		
+		
+		
 
 	}
 
