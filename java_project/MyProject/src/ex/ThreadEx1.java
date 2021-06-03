@@ -26,6 +26,7 @@ class CountDownThread extends Thread {
 
 	@Override
 	public void run() {
+		
 		for (int i = 10; i > 0; i--) {
 			if(ThreadEx1.chk) {
 				return;
@@ -37,6 +38,7 @@ class CountDownThread extends Thread {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
 		}
 		System.out.println("입력시간이 지나 프로그램을 종료합니다.");
 		System.exit(0);
