@@ -48,10 +48,13 @@ class IncThread extends Thread {
 
 
 class Increment {
+	
 	int num = 0;
+	
 	public synchronized void increment() {
 		num++; // num = num + 1;
 	}
+	
 	public int getNum() {
 		return num;
 	}
