@@ -130,6 +130,10 @@ from emp
 order by sal desc, ename asc
 ;
 
+select * from customer;
+select * from book;
+select * from orders;
+
 
 
 

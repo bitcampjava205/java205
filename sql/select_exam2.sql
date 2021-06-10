@@ -1,6 +1,7 @@
 -- 마당서적 연습문제
 
 desc book;
+select * from book;
 desc customer;
 desc orders;
 
@@ -65,8 +66,8 @@ where orderdate between '14-07-04' and '14-07-07'
 
 
 
--- (5) 2014년7월4일~7월7일사이에 주문받은 도서를 제외한 도서의
--- 주문번호
+-- (5) 2014년7월4일~7월7일사이에 주문받은 도서를 제외한 
+--    도서의 주문번호
 select orderid
 from orders
 where orderdate not between '14-07-04' and '14-07-07'
