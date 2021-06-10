@@ -140,7 +140,8 @@ where ename like '%A%' and ename like '%E%'
 --    사원의 이름, 담당업무, 급여를 출력하시오.
 select ename, job, sal
 from emp
-where (job='CLERK' or job='SALESMAN') and sal not in (1600, 950, 1300)
+--where (job='CLERK' or job='SALESMAN') and sal not in (1600, 950, 1300)
+where job in ('CLERK', 'SALESMAN') and sal not in (1600, 950, 1300)
 ;
 
 
@@ -150,5 +151,6 @@ select ename, sal, comm
 from emp
 where comm>=500
 ;
+
 
 
