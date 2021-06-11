@@ -41,5 +41,62 @@ order by publisher
 -- where
 -- group by 그룹핑할 기준의 컬럼
 
+-- 부서별 급여 평균을 구해보자
+select avg(sal) from emp where deptno=10;
+select avg(sal) from emp where deptno=20;
+select avg(sal) from emp where deptno=30;
+
+select deptno, count(*) as "부서 인원", sum(sal) as "부서의 급여 총합", trunc(avg(sal)) as "부서의 급여 평균", max(sal) as "부서의 최대 급여액", min(sal) as "부서의 최소 급여액"
+from emp
+group by deptno
+order by deptno
+;
+select * from emp order by deptno;
+
+-- 직급별
+select distinct  job
+from emp;
+
+select job, count(*)
+from emp
+group by job
+order by job
+;
+
+-- 부서별로 사원 수와 커미션을 받는 사원들의 수를 계산해서 출력
+select deptno, count(*), count(comm)
+from emp
+group by deptno
+order by deptno
+;
+
+select count(*), count(comm)
+from emp
+where deptno = 10
+;
+
+-- group by의 그룹함수의 결과를 비교 시에는 having 절 사용
+-- select
+-- from
+-- where 
+-- group by
+-- having 그룹함수 연산자 값  (= != > < >= <=) 
+
+-- 부서별 평균 급여가 2000 이상인(HAVING) 
+-- 부서번호와 부서별 평균 급여를 출력
+select deptno, avg(sal)
+from emp
+group by deptno
+having avg(sal)>=2000 
+;
+
+-- 부서의 급여의 최대값과 최소값을 구하되 
+-- 최대 급여가 2900이상인 부서만 출력합니다.
+select deptno, max(Sal), min(sal)
+from emp
+group by deptno
+having max(sal) >= 2900
+order by deptno
+;
 
 
