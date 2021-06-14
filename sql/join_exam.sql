@@ -24,7 +24,8 @@ where emp.ename='SCOTT'
 --     사원 이름과 함께 그 사원이 소속된 부서이름과 지역 명을 출력하시오.
 select e.ename, d.dname, d.loc
 from emp e inner join dept d
-on e.deptno=d.deptno
+on e.deptno=d.deptno  -- 조인의 조건
+where e.ename='SCOTT'  -- 행을 선택하는 조건
 ;
 
 
@@ -80,8 +81,6 @@ where e.mgr=m.empno
 -- 39. OUTER JOIN, SELF JOIN을 사용하여 
 -- 관리자가 없는 사원을 포함하여 
 -- 사원번호를 기준으로 내림차순 정렬하여 출력하시오.
-
-
 select e.ename, e.empno, m.ename
 from emp e, emp m
 where e.mgr=m.empno(+)
@@ -100,7 +99,6 @@ order by e.empno
 -- 40. SELF JOIN을 사용하여 지정한 사원의 
 -- 지정한 사원과 동일한 부서에서 근무하는 사원 이름, 부서번호을 출력하시오.
 -- ( SCOTT )
-
 select ename from emp where deptno=20;
 
 select e.ename, e.deptno, s.ename
@@ -118,7 +116,7 @@ and s.ename != 'SCOTT'
 -- WARD 사원보다 늦게 입사한 
 -- 사원의 이름과 입사일을 출력하시오.
 
-select e.ename, e.hiredate, w.hiredate,  w.ename
+select *--e.ename, e.hiredate, w.hiredate,  w.ename
 from emp e, emp w
 where w.ename='WARD'
 and e.hiredate>w.hiredate
