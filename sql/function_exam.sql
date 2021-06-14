@@ -220,7 +220,7 @@ select job, deptno,
             nvl(decode(deptno, 10, sum(sal)),0) as "10번 부서",
             nvl(decode(deptno, 20, sum(sal)),0) as "20번 부서",
             nvl(decode(deptno, 30, sum(sal)),0) as "30번 부서",
-sum(sal) as "총액"
+            sum(sal) as "총액"
 from emp
 group by job, deptno
 order by job, deptno
