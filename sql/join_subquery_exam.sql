@@ -62,7 +62,7 @@ SELECT CUSTID FROM CUSTOMER WHERE NAME='박지성';
 --(7) 박지성이 구매하지 않은 
 --    도서의 이름
 
-SELECT *
+SELECT  bookid-- *
 FROM ORDERS O, CUSTOMER C
 WHERE O.CUSTID=C.CUSTID AND C.NAME='박지성'
 ;
@@ -81,7 +81,8 @@ WHERE BOOKID NOT IN (
 
 
 
---2 마당서점의운영자와경영자가요구하는다음질문에대해SQL 문을작성하시오.
+--2 마당서점의 운영자와 경영자가 요구하는 다음질문에대해 SQL 문을작성하시오.
+
 --(8) 주문하지 않은 고객의 이름(부속질의사용)
 
 SELECT C.NAME
@@ -89,6 +90,13 @@ FROM ORDERS O, CUSTOMER C
 WHERE O.CUSTID(+)=C.CUSTID 
 AND O.ORDERID IS NULL
 ;
+
+SELECT *
+FROM ORDERS O, CUSTOMER C
+WHERE O.CUSTID(+)=C.CUSTID and o.orderid is null
+;
+
+
 
 SELECT NAME
 FROM CUSTOMER
@@ -121,6 +129,13 @@ SELECT C.NAME, SUM(SALEPRICE)
 FROM ORDERS O, CUSTOMER C
 WHERE O.CUSTID=C.CUSTID
 GROUP BY C.NAME
+;
+
+select o.custid , 
+       (select c.name from customer c where o.custid=c.custid), 
+       sum(saleprice)
+from orders o
+group by o.custid
 ;
 
 
@@ -184,6 +199,7 @@ HAVING AVG(SALEPRICE)>(
 
   
 --3. 마당서점에서 다음의 심화된 질문에 대해 SQL 문을 작성하시오.
+
 --(1) 박지성이 구매한 도서의 출판사와 같은 출판사에서 도서를 구매한 고객의 이름
 
 SELECT B.PUBLISHER
