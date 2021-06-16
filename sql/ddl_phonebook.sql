@@ -88,11 +88,9 @@ create table phoneinfo_com (
 
 -- INSERT : CREATE
 insert into phoneinfo_basic
-values (4, 'PARK', '010-7777-7777', 'park@gmail.com', 'LONDON', sysdate)
+values (pi_idx_pk.nextval, 'PARK', '010-7777-7777', 'park@gmail.com', 'LONDON', sysdate)
 ;
-insert into phoneinfo_com
-values (1, 'NAVER', 4)
-;
+insert into phoneinfo_com values (2, 'NAVER', pi_idx_pk.currval);
 
 -- SELECT : READ
 select fr_name, pb.fr_phonenumber, pb.fr_email, pb.fr_address, pc.fr_c_company
