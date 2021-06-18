@@ -31,7 +31,10 @@ public class DeptDao {
 
 			// 데이터를 Dept 객체로 생성 -> list에 저장
 			while (rs.next()) {
-				list.add(new Dept(rs.getInt(1), rs.getString(2), rs.getString(3)));
+				
+				Dept d = new Dept(rs.getInt(1), rs.getString(2), rs.getString(3));
+				
+				list.add(d);
 			}
 
 		} catch (SQLException e) {
@@ -138,6 +141,44 @@ public class DeptDao {
 	}
 
 
+	// 4. DEPT 테이블의 데이터를 삭제
+	// 삭제된 행의 개수를 반환
+	// 사용자로부터 deptno 받아서 처리
+	int deleteDept(Connection conn, int deptno) {
+		
+		int result = 0;
+		
+		// 데이터 베이스 처리 sql
+		PreparedStatement pstmt = null;
+		String sql = "delete from dept where deptno=?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, deptno);
+			
+			result = pstmt.executeUpdate();
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			
+			if(pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		
+		
+		return result;
+		
+	}
 
 
 

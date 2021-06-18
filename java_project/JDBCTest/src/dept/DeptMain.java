@@ -54,7 +54,7 @@ public class DeptMain {
 				System.out.println("입력 실패!");
 			}*/
 			
-			System.out.println("부서수정을 시작합니다.");
+			/*System.out.println("부서수정을 시작합니다.");
 			System.out.println("수정하고자하는 부서번호 새부서이름 새부서위치 순으로 입력해주세요.");
 			System.out.println("예) 50 dev seoul");
 			String deptData = sc.nextLine();
@@ -68,7 +68,9 @@ public class DeptMain {
 				System.out.println("수정 성공!");
 			} else {
 				System.out.println("수정 실패!");
-			}
+			}*/
+			
+			
 			
 			
 			
