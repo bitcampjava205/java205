@@ -27,6 +27,7 @@ public class DeptMain {
 
 			DeptDao dao = new DeptDao();
 
+			
 			List<Dept> list = dao.getDeptList(conn);
 			
 			for(Dept dept : list) {
