@@ -6,8 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Scanner;
 
-public class JDBCTestEMP {
+public class JDBCTestDeptDML2 {
 
 	public static void main(String[] args) {
 		
@@ -19,6 +20,8 @@ public class JDBCTestEMP {
 		ResultSet rs = null;
 		//Statement -> PreparedStatement  : 성능개선
 		PreparedStatement pstmt = null;
+		
+		Scanner sc = new Scanner(System.in);
 		
 		try {
 			// 1. 드라이버 로드
@@ -33,39 +36,54 @@ public class JDBCTestEMP {
 			conn = DriverManager.getConnection(jdbcUrl, user, pw);
 			System.out.println("데이터베이스 연결 성공!!!");
 			
+			// 트렌젝션 설정
+			conn.setAutoCommit(false);
+			
+			
+			System.out.println("부서 정보의 삭제를 시작합니다.");
+			System.out.println("부서 번호를 입력해주세요.");
+			String deptno = sc.nextLine();
+			
+			
+			
 			// 3. sql 처리
-			// 사원 번호, 사원이름, 지급, sal, 부서이름, 부서위치
+			// 사용자에게 정보를 받아 부서 데이터를 입력하는 프로그램을 만들어보자
+			String sql = "delete from dept01 where deptno=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1,Integer.parseInt(deptno));
 			
-			// 1. Statement
-			stmt = conn.createStatement();
+			int result = pstmt.executeUpdate();
 			
-			// 2. sql 작성
-			String sql = "select e.empno, e.ename, e.job, e.sal, d.dname, d.loc  from emp e, dept d where e.deptno=d.deptno";
-			
-			// 3. Resultset 객체로 데이터 받기
-			rs = stmt.executeQuery(sql);
-			
-			// 4. 출력
-			while(rs.next()) {
-				System.out.println(rs.getInt(1)+"\t"
-									+rs.getString(2)+"\t"
-									+rs.getString(3)+"\t"
-									+rs.getInt(4)+"\t"
-									+rs.getString(5)+"\t"
-									+rs.getString(6)
-									);
+			if(result>0) {
+				System.out.println(result+"개 행이 삭제되었습니다.");
+			} else {
+				System.out.println("조건에 맞는 데이터가 존재하지 않습니다.");
 			}
 			
 			
 			
 			
 			
+			
+			
+			
+			// 트렌젝션 완료(성공)
+			conn.commit();
+			
+			
 		} catch (ClassNotFoundException e) {
 			System.out.println("드라이버 클래스를 찾지못함!!!");
 			e.printStackTrace();
 		} catch (SQLException e) {
-			System.out.println("데이터베이스 연결 실패!!!");
+			//System.out.println("데이터베이스 연결 실패!!!");
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			e.printStackTrace();
+			
 		} finally {
 			
 			// 4. close
