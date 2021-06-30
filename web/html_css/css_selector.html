@@ -109,11 +109,12 @@
         img[src$=gif] {
             border: 5px solid black;
         }
+
         /* 
         후손 선택자
         부모선택 (공백) 선택자
         */
-        #header1 h1{
+        #header1 h1 {
             color: red;
         }
 
@@ -121,15 +122,105 @@
             color: orange;
         }
 
+        /* 
+        자손 선택자
+        부모선택>선택자
+         */
+
+        #header1>h1 {
+            background-color: palegoldenrod;
+        }
+
+        #section>h1 {
+            background-color: palegreen;
+        }
+
+        /* 
+        동위 선책자
+        기준 선택요소 뒤에 오는 요소를 선택
+        1. 바로뒤에 위치하는 요소 선택
+        2. 뒤에 존재하는 요소를 선택
+         */
+
+        /* 바로뒤에 위치하는 요소를 선택 : + */
+        #title1+h2 {
+            background-color:rebeccapurple;
+        }
+        /* 기준 요소 뒤로 존재하는 요소를 선택 : ~ */
+        #title1~h2 {
+            background-color: black;
+        }
+
+        /* 선택영역에 마우스 커서가 위치하는경우 -> :hover */
+        #btn00:hover {
+            background-color: crimson;
+            color: white;
+        }
+        #btn00:active {
+            background-color: teal;
+            color : white;
+        }
+
+        h1>a:hover {
+            color: deeppink;
+        }
+
+        /* 입력 양식 태그의 상태로 선택 */
+        input:disabled {
+            background-color: black;
+        }
+
+        input:enabled {
+            width : 200px;
+            height: 35px;
+            font-size: 1.2em; /* 120% */
+        }
+
+        input:focus {
+            border: 5px solid red;
+        }
+        
     </style>
 </head>
 
 <body>
 
+
+    <input>
+
+    <input disabled value="cool">
+
+
+    <hr>
+
+
+    <h1><a href="#">click</a></h1>
+    <H1 id="btn00">Button</H1>
+
+
+    <hr>
+
+    <h2>header2-0</h2>
+
+    <h1 id="title1">header1</h1>
+
+    <h2>header2-1</h2>
+    <h2>header2-2</h2>
+    <h2>header2-3</h2>
+    <h2>header2-4</h2>
+    <h2>header2-5</h2>
+
+
+    <hr>
+
+    <h2>header2-6</h2>
+
+
     <div id="header1">
         <h1 class="title">Lorem ipsum</h1>
         <div id="nav">
             <h1>Navigation</h1>
+            <h2>header2-7</h2>
         </div>
     </div>
     <div id="section">
