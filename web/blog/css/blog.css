@@ -1,0 +1,38 @@
+/* 브라우저 별 요소 스타일 초기화 */
+*, body, h1, h2, h3, h4, h5, h6, p, div, 
+header, nav, section, article, footer, 
+table, tr, td, th,
+input, textarea {
+    margin: 0;    
+    padding: 0;
+    font-family: Arial, '돋음체';
+    font-size: 16px;
+}
+
+body {
+    background-color: cornsilk;
+}
+
+/* 전체 요소를 감싸를 블록 */
+#main_wrap {
+    width: 800px;
+    border: 1px solid #DDD;
+    border-radius: 4px;
+
+    background-color: #FFF;
+
+    margin: 10px auto;
+}
+
+/* header 영역 */
+
+
+/* navigation 영역 */
+
+/* 컨텐츠 영역 */
+
+/* 게시물 영역 */
+
+/* aside 영역 */
+
+/* footer 영역 */
