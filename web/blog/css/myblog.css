@@ -1,0 +1,14 @@
+@charset "utf-8";
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body, div, h1, h2, h3, h4, h5, h6,
+table, input, 
+header, nav, aside, section, article,
+p  {
+    font-size: 16px;
+    font-family: '돋움체',Arial, Helvetica, sans-serif;
+}
