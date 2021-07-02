@@ -1,5 +1,13 @@
 @charset "utf-8";
 
+@import url('https://fonts.googleapis.com/css2?family=Jua&family=Nanum+Gothic:wght@700&family=Sunflower:wght@500&display=swap');
+
+/* 나눔고딕,  주아, 선플라워
+font-family: 'Jua', sans-serif;
+font-family: 'Nanum Gothic', sans-serif;
+font-family: 'Sunflower', sans-serif;
+ */
+
 * {
     margin: 0;
     padding: 0;
@@ -12,3 +20,85 @@ p  {
     font-size: 16px;
     font-family: '돋움체',Arial, Helvetica, sans-serif;
 }
+
+body {
+    background-color: cornsilk;
+}
+
+/* 전체요소를 감싸는 블록 */
+#main_wrap {
+    width: 776px; /* -10 -10 -1 -1 -2*/
+
+    background-color: #FFF;
+
+    border: 1px solid #AAA;
+    border-radius: 5px;
+
+    margin: 10px auto;
+
+    box-shadow:  2px 2px 3px #DDD;
+
+    padding: 10px;
+}
+
+/* header 영역 */
+header {
+    padding: 20px;
+}
+
+header>h1 {
+    font-size: 2.0em;
+    font-weight: 400;
+}
+
+/* navigation 영역 */
+nav {
+
+    height: 35px;
+
+    border-top: 1px solid #aaa;
+    border-bottom: 1px solid #aaa;
+
+    overflow: hidden;
+}
+
+nav>ul {
+    float: left;
+
+    overflow: hidden;
+
+    list-style: none;
+}
+
+nav>ul>li {
+    float: left;
+    padding: 0 20px;
+    height: 35px;
+    line-height: 35px;
+}
+
+nav>div {
+    float: right;
+}
+
+
+
+/* 공통으로 사용할 클래스 */
+.font_jua {
+    font-family: 'Jua', sans-serif;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
