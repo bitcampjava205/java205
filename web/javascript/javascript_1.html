@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JAvascript 기본 문법</title>
+    <!-- Javascript는 HTML 문서 안에서 실행 합니다.-->
+    <!-- <script> ... </script> -->
+    <!-- 자바스크립트는 head 태그 사이에 위치, body 태그 안에도 위치가 가능-->
+    <!-- HTML의 문서는 1라인부터 아래도 실행된다! 
+         -> 필요에 따라 자바스크립트의 위치를 변경해주어야 한다.-->
+    <script>
+        // alert() 함수는 사용자에 경고 메시지를 출력합니다.
+        //alert('Javascript! Hello~!!!');
+    </script>
+</head>
+<body>
+    <!-- <script>
+        alert('body 태그 안에 스크립트를 작성했습니다.');
+    </script> -->
+    
+</body>
+
+<script>
+    /* 
+    alert('body 태그 밖에 \n "스크립트"를 작성했습니다.');
+    alert('<a href="https://www.naver.com">\n naver \n</a>');
+    alert("<a href=\"https://www.naver.com\">naver</a>");
+    */
+</script>
+
+
+</html>
+<!-- <script>
+    // Javascript에서의 숫자는 정수와 실수를 구분하지 않고 하나의 타입으로 관리
+    // 숫자 -> number 타입 하나로 처리
+    var num = 10;
+    alert(num);
+    num = 10.2;
+    alert(num);
+    alert(5+3*2);  // 3*2 -> 5+6
+    alert((5+3)*2);
+    // ; 문장의 종결을 의미하는 ;은 생략 가능 하지만 붙이자!!!
+
+</script> -->
+
+<!-- <script>
+    // 비교연산 : > < >= <= == !=
+    // 문자열간의 크기 비교가 가능 -> 유니코드 값으로 비교! 
+    alert('가 == 가 : ' + ('가'=='가'));
+    alert('가 == 하 : ' + ('가'=='하'));
+    alert('가 > 하 : ' + ('가'>'하'));
+    alert('가 < 하 : ' + ('가'<'하'));
+    // true => 1, false => 0
+    alert('true > fale : ' + (true>false))
+</script> -->
+
+<script>
+    alert(true);
+    alert(false);
+
+    // 논리부정연산자 : !
+    alert('!true : ' + !true);
+    alert('!false : ' + !false);
+
+    var num = 10;
+    var chk = num>0 && num<100 ; // 0보다 크고  100보다 작은지 체크 논리연산
+
+    if(num>0){
+        // 조건식의 결과가 true 일때 실행하는 블록({})
+        alert('num 변수의 값은 0보다 큰 값 입니다.')
+    }
+
+    if(chk) {
+        alert('num의 값은 0보다 크고 100보다 작은 숫자 입니다.');
+    }
+   
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
