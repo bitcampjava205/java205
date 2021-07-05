@@ -258,7 +258,8 @@
 
 
     var year = prompt("대어난 년도를 입력해주세요.");
-    var numberVal = Number(year);
+    var numberVal = Number(year);   
+    // Number() -> 숫자타입으로 강제적인 형변환, 문자열이 숫자 형식이 아닌경우 NaN 반환
 
     console.log('numberVal type : ' , typeof numberVal);
     console.log(numberVal);
