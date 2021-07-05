@@ -199,7 +199,7 @@
 
 </script> -->
 
-<script>
+<!-- <script>
 
     var func = function(){
 
@@ -221,9 +221,61 @@
     //     alert('숫자 데이터 입니다.');
     // }
 
+</script> -->
+
+<!-- <script>
+    // window 객체에서 제공하는 기본 함수
+    alert('String'); // 데이터를 출력
+
+    var str = prompt('숫자를 입력하세요~!!', '123');
+    console.log('str : ' , typeof str);
+    alert(str);
+
+    var chk = confirm('정말 삭제하시겠습니까?');
+    console.log('chk : ', chk);
+    console.log('chk : ', typeof chk);
+
+    if(chk) {
+        alert('데이터를 삭제하는 코드가 실행됩니다.');
+    } else {
+        alert('데이터를 삭제하지 않습니다.');
+    }
+</script> -->
+
+<script>
+
+    // 문자열과 다른 타입간의 덧셈 : 문자열 우선 연산
+    // console.log(273 + '22');    // 숫자 + 문자 => 문자 + 문자
+    // console.log('273' + 22);    // 문자 + 숫자 => 문자 + 문자
+    // console.log('273' + '22');  // 문자 + 문자 
+    // console.log(273+22);        // 숫자 + 숫자
+
+    // 덧셈을 제외한 나머지 사칙연산의 경우 숫자 우선으로 연산
+    // console.log('12*5');
+    // console.log('12'*5);    // 문자 * 숫자 -> 숫자 * 숫자
+    // console.log(12*'5');    // 숫자 * 문자 -> 숫자 * 숫자
+    // console.log('12'*'5');  // 문자 * 문자 -> 숫자 * 숫자
+
+
+    var year = prompt("대어난 년도를 입력해주세요.");
+    var numberVal = Number(year);
+
+    console.log('numberVal type : ' , typeof numberVal);
+    console.log(numberVal);
+    console.log(numberVal + 10);
+    console.log(isNaN(numberVal));
+
+    // isNaN(숫자데이터) -> NaN 일때 true값 반환
+    if( !isNaN(numberVal) ){
+        // year 문자열을 숫자 타입으로 자동 형변환
+        alert(2021-numberVal + '살 입니다.');    
+    } else {
+        alert('정상적인 숫자 데이터를 입력해주세요.');
+    }
+    
+
+
 </script>
-
-
 
 
 
