@@ -43,8 +43,7 @@
         console.log(player);
     </script> -->
 
-    <script>
-
+<!--     <script>
         window.onload = function () {
             // 학생들의 과목점수를 저장하는 배열
             // 학생들의 과목 점수들은 객체로 생성 -> 배열로 객체를 저장
@@ -99,8 +98,32 @@
             html += '</table>'
             document.body.innerHTML = html;
         }
-    
-    
+    </script> -->
+
+    <script>
+
+        // 생성자 함수 : new 키워드로 객체를 생성해주는 함수
+        // 생성자 함수의 이름(식별자)는 대문자로 시작
+        function Student(name, kor, eng, math){
+            // 속성
+            this.name=name;
+            this.kor=kor;
+            this.eng=eng;
+            this.math=math;
+
+            // 총점을 구하는 메소드
+
+            // 평균점수를 구하는 메소드
+
+            // html을 만들어주는 메소드
+
+        }
+
+        var st = new Student('한국', 100, 50, 80);
+        console.log(typeof st);
+        console.log(st);
+
+
     </script>
 
 
