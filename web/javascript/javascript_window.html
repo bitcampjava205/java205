@@ -1,11 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Javascript Window Object</title>
-    <script>
+    <!-- <script>
 
         // var output = '';
 
@@ -39,7 +40,7 @@
 
         //console.log(navigator);
 
-        window.onload = function(){
+        window.onload = function () {
 
             // 태그 생성, 텍스트 생성 -> 태그에 텍스트를 붙여준다.
 
@@ -68,9 +69,42 @@
 
             document.body.appendChild(img);
 
+            console.log(document.body.innerHTML);
+            console.log(document.body.innerText);
+
+            //document.body.innerText= '<h1>test</h1>';
+
+            document.body.innerHTML = '<h1>test</h1>';
+
         }
+    </script> -->
 
+    <script>
 
+        window.onload = function () {
+            //HTML 문서에 작성된 테그 요소들을 캐스팅 -> 문서객체로 만드는것
+            var header1 = document.getElementById('header1');
+            var header2 = document.getElementById('header2');
+
+            console.log(typeof header1, header1.innerHTML);
+            console.log(typeof header2, header2.innerHTML);
+
+            header1.innerHTML = '안녕히계세요!!!';
+            header2.innerHTML = '<i>다음에 만나요!!!</i>';
+
+            header1.style.backgroundColor = 'red';
+            header1.style.color = 'white';
+            header1.style.padding = '10px';
+
+            var lang = document.getElementsByName('language');
+            console.log(typeof lang, lang);
+
+            var inputs = document.getElementsByTagName('input');
+            console.log(typeof inputs, inputs);
+
+            var checkbox = document.querySelector('#header2+input');
+            console.log(typeof checkbox, checkbox);
+        }
 
 
     </script>
@@ -81,9 +115,15 @@
 
 
 
-
 </head>
+
 <body>
-    
+
+    <h1 id="header1"><i>안녕하세요</i></h1>
+    <h2 id="header2">반갑습니다.</h2>
+
+    <input type="checkbox" name="language" value="java" checked> java <br>
+    <input type="checkbox" name="language" value="javascript" checked> javascript <br>
+    <input type="checkbox" name="language" value="HTML5"> html5
+ 
 </body>
-</html>
