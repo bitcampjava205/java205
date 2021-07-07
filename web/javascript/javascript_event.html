@@ -7,6 +7,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Javascript Event</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+
+        }
+
         h1 {
             background-color: greenyellow;
         }
@@ -61,19 +67,31 @@
 
             // form 태그 캐스팅
             var form = document.getElementById('myForm');
-            form.onsubmit = function() {
+            form.onsubmit = function () {
                 console.log('submit 이벤트');
 
                 var id = document.getElementById('userID').value;
                 console.log(typeof id, id);
-                if(id.length<1){
+                if (id.length < 1) {
                     alert('아이디를 입력해주세요');
                     return false;
                 }
 
             }
 
+            var p1 = document.getElementById('p1');
+            p1.onclick = function (e){
+                var event = e || window.event;
 
+                alert('P Click');
+
+                // IE 일때
+                event.cancelBubble = true;
+                // IE 이외의 브라우저일때
+                if (event.stopPropagation) {
+                    event.stopPropagation();
+                }
+            }
 
 
         };
@@ -88,11 +106,23 @@
 
 <body>
 
-          <!-- ?userID=cool&userPW=1234& -->
+
+    <div style="border:2px solid black;" onclick="alert('div1')">
+        <div style="border:2px solid green;" onclick="alert('DIV2')">
+            <h1 style="border:2px solid blue;" onclick="alert('H1')">
+                <p id="p1" style="border:2px solid red; width:50%;background-color: red;" >클릭하세요</p>
+            </h1>
+        </div>
+    </div>
+
+
+
+
+    <!-- ?userID=cool&userPW=1234& -->
 
     <form id="myForm" action="http://www.naver.com" method="post">
 
-        id <input type="text" id="userID" name="userID" ><br>
+        id <input type="text" id="userID" name="userID"><br>
         pw <input type="password" id="pw" name="userPW"> <br>
         <input type="submit" value="로그인">
 
