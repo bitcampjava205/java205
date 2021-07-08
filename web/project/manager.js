@@ -53,7 +53,7 @@ window.onload = function () {
         }
 
 
-        if (pw.value.trim().length < 1 ) {
+        if (pw.value.trim().length < 1) {
             //alert('비밀번호를 입력해주세요');
             document.querySelector('#pw+div.msg').innerHTML = '필수항목입니다.';
             document.querySelector('#pw+div.msg').style.display = 'block';
@@ -122,7 +122,7 @@ window.onload = function () {
     repw.addEventListener('focus', function () {
         document.querySelector('#repw+div.msg').style.display = 'none';
         document.querySelector('#repw+div.msg').innerHTML = '';
-        repw.value='';
+        repw.value = '';
     });
 
     userName.addEventListener('focus', function () {
@@ -134,13 +134,12 @@ window.onload = function () {
 
 
 
-    
-    
+
+
 }
 
 // 배열에 있는 요소를 -> table tr 행을 만들어서 출력
-function setList (){
-
+function setList() {
 
     // table 의 tbody 캐스팅
     var list = document.querySelector('#list');
@@ -153,7 +152,7 @@ function setList (){
     tbody += '  <th>관리</th>';
     tbody += '</tr>';
 
-    if(members.length<1){
+    if (members.length < 1) {
 
         tbody += '<tr>';
         tbody += '<td colspan="5">데이터가 존재하지않습니다.</td>';
@@ -162,13 +161,13 @@ function setList (){
 
     } else {
 
-        for(var i=0; i<members.length; i++){
+        for (var i = 0; i < members.length; i++) {
             tbody += '<tr>';
-            tbody += '  <td>'+i+'</td>';
-            tbody += '  <td>'+members[i].userId+'</td>';
-            tbody += '  <td>'+members[i].pw+'</td>';
-            tbody += '  <td>'+members[i].userName+'</td>';
-            tbody += '  <td>수정 | 삭제</td>';
+            tbody += '  <td>' + i + '</td>';
+            tbody += '  <td>' + members[i].userId + '</td>';
+            tbody += '  <td>' + members[i].pw + '</td>';
+            tbody += '  <td>' + members[i].userName + '</td>';
+            tbody += '  <td> <a href="javascript:editMember('+i+')">수정</a> | <a href="javascript:deleteMember('+i+')">삭제</a></td>';
             tbody += '</tr>';
         }
     }
@@ -177,5 +176,31 @@ function setList (){
     list.innerHTML = tbody;
 
 
+
+}
+
+// 배열의 요소 삭제 함수
+function deleteMember(index) {
+    //alert(index + ' 인덱스의 요소를 삭제합니다.');
+
+    //var chk = confirm('삭제하시겠습니까?');
+
+    // 배열의 index 요소를 삭제
+    // splice(index, count) : index에서 시작해서 count 만큼의 요소를 삭제하고 남은 요소의 배열을 반환
+    // splice(index, 1)
+    if(confirm('삭제하시겠습니까?')){
+        members.splice(index, 1);
+        alert('삭제되었습니다.');
+        // 테이블 리스트를 갱신
+        setList();
+    }
     
 }
+
+// 배열의 요소 수정 함수
+function editMember(index) {
+    alert(index + ' 인덱스의 요소를 수정합니다.');
+}
+
+
+
