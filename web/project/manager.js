@@ -3,9 +3,9 @@
 // 회원의 정보 : 아이디, 비밀번호, 이름
 // Member -> 생성자 함수를 정의
 function Member(id, pw, name) {
-    this.userId = id;
+    this.userid = id;
     this.pw = pw;
-    this.userName = name;
+    this.username = name;
 }
 // 객체가 가지는 메소드는 공통으로 사용 -> prototype
 Member.prototype.makeHtml = function () {
@@ -17,6 +17,12 @@ Member.prototype.makeHtml = function () {
 // 회원의 정보를 저장하는 배열
 var members = []; // new Array()
 
+// 배열 -> JSON(문자열) -> localStorage 저장
+// 저장
+// 수정
+// 삭제
+// setItem('members', JSON.stringify(members))
+
 
 //////////////////////////////////////////////////////////
 
@@ -25,8 +31,21 @@ var members = []; // new Array()
 
 window.onload = function () {
 
-    // 테이블 세팅
-    setList();
+    //localStorage 저장된 데이터가 있는지 확인
+    // localStorage.getItem('members') 없으면 null 반환
+    if(localStorage.getItem('members') == null) {
+        // 배열 members 를 저장
+        localStorage.setItem('members', JSON.stringify(members));
+    } else {
+        members = JSON.parse(localStorage.getItem('members')); // JSON 문자열 -> 객체로 변환
+        console.log(members);
+        // 테이블 세팅
+        setList();
+    }
+
+
+   // setList();
+    
 
     var userid = document.querySelector('#userID');
     var pw = document.querySelector('#pw');
@@ -96,6 +115,9 @@ window.onload = function () {
         // 배열에 사용자 정보를 추가
         members.push(new Member(userid.value, pw.value, userName.value));
 
+        // 저장
+        localStorage.setItem('members', JSON.stringify(members));
+
         alert('등록되었습니다.');
         console.log('회원 리스트', members);
 
@@ -130,16 +152,14 @@ window.onload = function () {
         document.querySelector('#userName+div.msg').innerHTML = '';
     });
 
-
-
-
-
-
-
 }
 
 // 배열에 있는 요소를 -> table tr 행을 만들어서 출력
 function setList() {
+
+    console.log(members);
+    // console.log(JSON.stringify(members));
+    // localStorage.setItem('members', JSON.stringify(members));
 
     // table 의 tbody 캐스팅
     var list = document.querySelector('#list');
@@ -164,9 +184,9 @@ function setList() {
         for (var i = 0; i < members.length; i++) {
             tbody += '<tr>';
             tbody += '  <td>' + i + '</td>';
-            tbody += '  <td>' + members[i].userId + '</td>';
+            tbody += '  <td>' + members[i].userid + '</td>';
             tbody += '  <td>' + members[i].pw + '</td>';
-            tbody += '  <td>' + members[i].userName + '</td>';
+            tbody += '  <td>' + members[i].username + '</td>';
             tbody += '  <td> <a href="javascript:editMember('+i+')">수정</a> | <a href="javascript:deleteMember('+i+')">삭제</a></td>';
             tbody += '</tr>';
         }
@@ -191,6 +211,10 @@ function deleteMember(index) {
     if(confirm('삭제하시겠습니까?')){
         members.splice(index, 1);
         alert('삭제되었습니다.');
+
+        // 저장
+        localStorage.setItem('members', JSON.stringify(members));
+
         // 테이블 리스트를 갱신
         setList();
     }
@@ -241,10 +265,15 @@ function editMember(index) {
         members[editIndex.value].pw = editPw.value;
         members[editIndex.value].userName = editName.value;
 
+        // 저장
+        localStorage.setItem('members', JSON.stringify(members));
+
         alert('수정되었습니다.');
 
         // 테이블 세팅
         setList();
+
+        editMemberClose();
 
         return false;
     }
@@ -252,4 +281,8 @@ function editMember(index) {
 }
 
 
+
+function editMemberClose(){
+    document.querySelector('#editFormArea').style.display = 'none';
+}
 
