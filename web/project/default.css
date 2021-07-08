@@ -100,6 +100,13 @@ div.msg {
     background-color: lightcyan;
 
     padding: 20px;
+
+    position: absolute;
+    left: 50%;
+    top: 100px;
+    margin-left: -175px;
+
+    display : none;
 }
 
 #div_header {
