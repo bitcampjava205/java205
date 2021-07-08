@@ -25,6 +25,9 @@ var members = []; // new Array()
 
 window.onload = function () {
 
+    // 테이블 세팅
+    setList();
+
     var userid = document.querySelector('#userID');
     var pw = document.querySelector('#pw');
     var repw = document.querySelector('#repw');
@@ -99,6 +102,9 @@ window.onload = function () {
         // form 초기화
         this.reset();
 
+        // 테이블 세팅
+        setList();
+
         return false;
     }
 
@@ -132,4 +138,44 @@ window.onload = function () {
     
 }
 
+// 배열에 있는 요소를 -> table tr 행을 만들어서 출력
+function setList (){
 
+
+    // table 의 tbody 캐스팅
+    var list = document.querySelector('#list');
+
+    var tbody = '<tr>';
+    tbody += '  <th>순번(index)</th>';
+    tbody += '  <th>아이디</th>';
+    tbody += '  <th>비밀번호</th>';
+    tbody += '  <th>이름</th>';
+    tbody += '  <th>관리</th>';
+    tbody += '</tr>';
+
+    if(members.length<1){
+
+        tbody += '<tr>';
+        tbody += '<td colspan="5">데이터가 존재하지않습니다.</td>';
+        tbody += '</tr>';
+
+
+    } else {
+
+        for(var i=0; i<members.length; i++){
+            tbody += '<tr>';
+            tbody += '  <td>'+i+'</td>';
+            tbody += '  <td>'+members[i].userId+'</td>';
+            tbody += '  <td>'+members[i].pw+'</td>';
+            tbody += '  <td>'+members[i].userName+'</td>';
+            tbody += '  <td>수정 | 삭제</td>';
+            tbody += '</tr>';
+        }
+    }
+
+
+    list.innerHTML = tbody;
+
+
+    
+}
