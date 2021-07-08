@@ -14,6 +14,11 @@ font-family: 'Sunflower', sans-serif;
     padding:0;
 }
 
+/* 타이틀 폰트 적용 */
+.title_font {
+    font-family: 'Jua', sans-serif;
+}
+
 
 /* header 영역 */
 header {
@@ -25,4 +30,38 @@ hr {
     border: 0;
     border-top: 1px solid #AAA;
     margin : 5px 0;
+}
+
+/* 회원 가입 폼 영역 */
+#regFormArea {
+    padding: 20px 40px;
+    border-bottom: 1px solid #AAA;
+}
+
+form label {
+    display: block;
+}
+
+#regForm>table td{
+    width : 200px;
+    padding : 5px;
+}
+
+#regForm input[type=text], #regForm input[type=password] {
+    height : 30px;
+    width : 200px;
+    font-size : 1.2em;
+    padding : 0 5px;
+}
+#regForm input[type=submit] {
+
+    width : 100px;
+    height : 56px;
+
+    border: 2px solid #AAA;
+
+    font-size: 1.5em;
+    font-family: 'Jua', sans-serif;
+
+    background-color: greenyellow;
 }
