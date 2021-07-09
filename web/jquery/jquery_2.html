@@ -15,6 +15,10 @@
         .floatLeft {
             float: left;
         }
+
+        h1 {
+            color : aqua;
+        }
     </style>
     <script src="https://code.jquery.com/jquery-1.12.4.js"
         integrity="sha256-Qw82+bXyGq6MydymqBxNPYTaUXXq7c8v3CwiYwLLNXU=" crossorigin="anonymous"></script>
@@ -47,6 +51,44 @@
             });
 
             $('img').removeAttr('height');
+
+
+            // 태그의 css 속성값 확인
+            var color = $('h1.title').css('color');
+            console.log(color);
+
+            // css 적용
+            //$('h1').css('background', 'red');
+            var colors = ['black', 'orange', 'yellow'];
+            // $('h1').css('background', function(index){
+            //     return colors[index];
+            // });
+            $('h1').css({
+                color : 'green',
+                backgroundColor : function(index){
+                    return colors[index];
+                }
+            });
+
+            var strHtml = $('h1').html();
+            console.log('html() : ',strHtml);
+
+            console.log($('#menu').html());
+            console.log($('#menu').text());
+
+
+            $('div').html(function(index, html){
+                console.log(index, html);
+                $(this).html('<h1>'+ html + index + '!!!!! </h1>');
+            });
+
+            $('#btn03').click(function(){
+                $('#menu').remove();
+            });
+
+            $('#btn04').click(function(){
+                $('#menu').empty();
+            });
             
         });
 
@@ -54,6 +96,18 @@
 </head>
 
 <body>
+
+
+    <div>DIV - 0</div>
+    <div>DIV - 0</div>
+    <div>DIV - 0</div>
+
+
+    <h1 class="title">header - 0</h1>
+    <h1>header - 1</h1>
+    <h1>header - 2</h1>
+
+
 
     <img class="img" src='../images/starwars.jpg'>
     <img class="img" src='../images/starwars.jpg'>
@@ -68,6 +122,8 @@
     </ul>
     <button id="btn01">변경</button>
     <button id="btn02">초기화</button>
+    <button id="btn03">메뉴 삭제</button>
+    <button id="btn04">내용 삭제</button>
 </body>
 
 </html>
