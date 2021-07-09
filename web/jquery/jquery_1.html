@@ -93,12 +93,29 @@
                 color: 'white'
             });
 
+            $('h2').css('background', 'orange').filter(':even').css('color', 'white').end().filter(':odd').css('color','red');
+
+            $('h1').eq(3).css('background', 'orange');
+            $('h1').last().css('background', 'blue');
+            $('h1').first().css('background', 'green');
+
+            $('h1').css('background', 'gray').add('h3').css('float', 'left');
+
+
         });
 
     </script>
 </head>
 
 <body>
+
+    <h2>header - 0</h2>
+    <h2>header - 1</h2>
+    <h2>header - 2</h2>
+    <h2>header - 3</h2>
+    <h2>header - 4</h2>
+    <h2>header - 5</h2>
+
 
     <h3>header - 0</h3>
     <h3>header - 1</h3>
