@@ -67,24 +67,52 @@
                 $(this).off('mouseleave');
             });
 
-            $('div').click(function(){
+            $('div').click(function(e){
+                
                 // 이벤트가 발생한 div -> this
                 // $('h3', this) -> 이벤트가 발생한 div 안에 위치한 h3을 선택
                 var h3 = $('h3', this).text();
                 var p = $('p', this).text();
 
                 alert(h3 + '\n' + p);
-
+                
+                console.log(e);
 
             });
 
+            setInterval(function(){
+                //$('h1').last().trigger('click');
+            }, 1000);
 
+            $('a').click(function(e){
+                alert('a tag click');
+
+                var e = e || window.event;
+
+                // 이벤트 버블링 제거
+                // if(e.stopPropagation) {
+                //     e.stopPropagation();
+                // }
+
+                // 기본 이벤트 제거
+                // e.preventDefault();
+
+                return false;
+
+                
+            });
 
         });
     </script>
 </head>
 
 <body>
+
+    <div>
+        <h1> <a href="http://www.naver.com">click</a> </h1>
+    </div>
+
+
 
     <div>
         <h3>header 1</h3>
