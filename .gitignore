@@ -96,14 +96,4 @@ local.properties
 hs_err_pid*
 
 # End of https://www.toptal.com/developers/gitignore/api/java,eclipse
-Servers/Tomcat v8.5 Server at localhost-config/catalina.properties
-Servers/Tomcat v8.5 Server at localhost-config/context.xml
-Servers/Tomcat v8.5 Server at localhost-config/server.xml
-Servers/Tomcat v8.5 Server at localhost-config/tomcat-users.xml
-Servers/Tomcat v8.5 Server at localhost-config/web.xml
-jsp_project/Servers/Tomcat v8.5 Server at localhost-config/catalina.policy
-jsp_project/Servers/Tomcat v8.5 Server at localhost-config/catalina.properties
-jsp_project/Servers/Tomcat v8.5 Server at localhost-config/context.xml
-jsp_project/Servers/Tomcat v8.5 Server at localhost-config/server.xml
-jsp_project/Servers/Tomcat v8.5 Server at localhost-config/tomcat-users.xml
-jsp_project/Servers/Tomcat v8.5 Server at localhost-config/web.xml
+Servers/
