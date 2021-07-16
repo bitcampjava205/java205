@@ -62,7 +62,7 @@
 					<jsp:include page="view.jsp"/>
 				</td>
 				
-			<tr>
+			</tr>
 			
 		</table>
 
