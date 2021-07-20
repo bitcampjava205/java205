@@ -16,43 +16,47 @@
 	Connection conn = null;
 	Statement stmt = null;
 	ResultSet rs = null;
-	
+
 	// jdbcUrl 
 	String jdbcUrl = "jdbc:mysql://localhost:3306/project?serverTimezone=UTC";
 	String user = "bit";
 	String pw = "bit";
-	
+
 	conn = DriverManager.getConnection(jdbcUrl, user, pw);
-	
+
 	// 3. Statement
 	stmt = conn.createStatement();
-	
+
 	// sql
 	String sqlSelect = "select * from dept";
-	
+
 	// 4. ResultSet
 	rs = stmt.executeQuery(sqlSelect);
-	
+
 	// 5. List<Dept> <- 결과 
 	List<Dept> deptList = new ArrayList<Dept>();
-	
-	while(rs.next()){
+
+	while (rs.next()) {
 		//  List에 객체 추가
-		deptList.add(
-				new Dept(
-						rs.getInt("deptno"), 
-						rs.getString("dname"), 
-						rs.getString("loc")
-						)
-				);
+		deptList.add(new Dept(rs.getInt("deptno"), rs.getString("dname"), rs.getString("loc")));
 	}
-	
-	 out.println(deptList);
-	
-	
-	
-	
+
+	out.println(deptList);
+
 	// 6. 결과 데이터 request 의 속성에 저장 -> 데이터 공유(전달)
+	request.setAttribute("result", deptList);
+	
 	
 %>
-<%-- <jsp:forward page="list_view.jsp" /> --%> <!-- view 의 역할만!!!! -->
+<jsp:forward page="list_view.jsp" />
+<!--  list_view.js : view 의 역할만!!!! -->
+
+
+
+
+
+
+
+
+
+
