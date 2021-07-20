@@ -46,7 +46,7 @@
 			<td><%= list.get(i).getDeptno() %></td>			
 			<td><%= list.get(i).getDname() %></td>
 			<td><%= list.get(i).getLoc() %></td>
-			<td><a href="#">수정</a> <a href="#">삭제</a></td>
+			<td><a href="dept_editForm.jsp?deptno=<%= list.get(i).getDeptno() %>">수정</a> <a href="#">삭제</a></td>
 		</tr>
 				<%
 			}
