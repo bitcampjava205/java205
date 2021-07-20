@@ -1,3 +1,4 @@
+<%@page import="jdbc.util.ConnectionProvider"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="dept.domain.Dept"%>
 <%@page import="java.util.List"%>
@@ -17,12 +18,9 @@
 	Statement stmt = null;
 	ResultSet rs = null;
 
+	
 	// jdbcUrl 
-	String jdbcUrl = "jdbc:mysql://localhost:3306/project?serverTimezone=UTC";
-	String user = "bit";
-	String pw = "bit";
-
-	conn = DriverManager.getConnection(jdbcUrl, user, pw);
+	conn = ConnectionProvider.getConnection();
 
 	// 3. Statement
 	stmt = conn.createStatement();
