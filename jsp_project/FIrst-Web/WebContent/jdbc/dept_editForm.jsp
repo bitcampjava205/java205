@@ -12,8 +12,7 @@
 	//out.println(deptno);
 	
 	// 전달받은 부서번호로 부서정보를 가져온다
-	// 1. 드라이버 로드
-	Class.forName("com.mysql.cj.jdbc.Driver");
+	// 1. 드라이버 로드 : 서블릿클래스 Loader에서 드라이버 로드
 	// 2. DB 연결
 	Connection conn = null;
 	PreparedStatement pstmt = null;
