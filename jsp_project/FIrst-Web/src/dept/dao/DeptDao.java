@@ -8,8 +8,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.print.attribute.standard.PrinterIsAcceptingJobs;
-
 import dept.domain.Dept;
 import jdbc.util.JdbcUtil;
 
