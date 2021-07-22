@@ -31,7 +31,8 @@
 			
 			if(member != null){
 				// 회원의 정보를 Session 객체에 저장 
-				session.setAttribute("member", member);
+				//session.setAttribute("member", member);
+				session.setAttribute("loginInfo", member.toLoginInfo());
 				loginChk = true;
 			}
 			
