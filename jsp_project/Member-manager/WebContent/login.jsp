@@ -1,3 +1,4 @@
+<%@page import="util.CookieBox"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -11,8 +12,21 @@
 	// ID 저장을 위한 쿠키 설정
 	// reid 값의 유무 체크
 	if(reid!=null && reid.equals("on")){
-		
+		// 쿠키 저장 : 사용자 ID를 저장
+		response.addCookie(CookieBox.makeCookie("reid", memberId, "/", 60*60*24*365));
+	} else {
+		// 쿠키값을 저장하지 않는다!!!
+		response.addCookie(CookieBox.makeCookie("reid", memberId, "/", 0));
 	}
-	
-
 %>
+
+<script>
+	alert('로그인 되었습니다.');
+	location.href = '<%= request.getContextPath()%>';   // /mm
+</script>
+
+
+
+
+
+

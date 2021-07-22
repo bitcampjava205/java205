@@ -1,5 +1,12 @@
+<%@page import="util.CookieBox"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%
+	CookieBox cBox = new CookieBox(request);
+
+	String reid = cBox.exists("reid") ? cBox.getValue("reid") : "";
+	String checked = cBox.exists("reid") ? "checked" : "";
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +36,7 @@
 			<table>
 				<tr>
 					<th>ID</th>
-					<td><input type="text" name="memberid"></td>
+					<td><input type="text" name="memberid" value="<%=reid%>"></td>
 				</tr>
 				<tr>
 					<th>PW</th>
@@ -37,10 +44,8 @@
 				</tr>
 				<tr>
 					<th></th>
-					<td>
-						<input type="checkbox" name="reid" value="on"> 
-						아이디 기억하기
-						</td>
+					<td><input type="checkbox" name="reid" value="on"
+						<%=checked%>> 아이디 기억하기</td>
 				</tr>
 				<tr>
 					<th></th>
