@@ -1,10 +1,11 @@
+<%@page import="util.CookieBox"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
 	// 쿠키의 수정은 같은 이름의 쿠키를 만들어서 설정
 	// 새로운 쿠키 생성
-	Cookie c = new Cookie("cname", "king");
-	response.addCookie(c);
+	//Cookie c = new Cookie("cname", "king");
+	response.addCookie(CookieBox.makeCookie("name", "이강인"));
 %>
 <!DOCTYPE html>
 <html>
