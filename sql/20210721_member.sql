@@ -14,7 +14,7 @@ create table project.member (
 -- Select
 select * from project.member;
 select * from project.member where idx=1;
-
+select * from project.member where memberid='cool' and password='1111';
 
 -- insert
 INSERT INTO project.member
