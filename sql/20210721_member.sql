@@ -18,7 +18,7 @@ select * from project.member where idx=1;
 
 -- insert
 INSERT INTO project.member
-(memberid,password,membername)
+(memberid, password, membername)
 VALUES
 ('cool', '1111', 'COOL');
 
