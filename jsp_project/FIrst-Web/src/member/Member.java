@@ -12,6 +12,12 @@ public class Member {
 	// beans 클래스는 기본 생성자 필수
 	public Member(){}
 	
+	public Member(String id, String pw, String name){
+		this.id=id;
+		this.pw=pw;
+		this.name=name;
+	}	
+	
 	public Member(String name){}	
 	
 	// setter
