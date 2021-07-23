@@ -13,19 +13,19 @@
 </head>
 <body>
 
-	${members} <br>
-	${members[0]} <br>
-	${members[1]} / ${members[1].name} / 
+	<c:if test="${10>0}">
+		참일때만 보여집니다.
+	</c:if>
 	
-	<c:out value="${members[0].name}"/>
+	이름 : ${members[1].name}
+	<c:if test="${members[1].name eq null}">
+		입력된 정보가 없습니다.
+	</c:if>
 	
-	/
+	<c:if test="${members[0].name == 'COOL00'}" var="result" scope="request" />
 	
-	<c:out value="${members[1].name}" escapeXml="false">
-		<span style="color:red;">입력된 정보 없음.</span>
-	</c:out>
-
-
+	<br> members[0].name == 'COOL00' : 
+	${result}
 
 
 
