@@ -30,7 +30,7 @@ public class MessageListview {
 		} else {
 			// 10 / 3 -> 3    10%3 >0 -> 3+1
 			this.pageTotalCount = this.messageTotalCount / this.messageCountPerpage;
-			if(this.messageTotalCount / this.messageCountPerpage > 0) {
+			if(this.messageTotalCount % this.messageCountPerpage > 0) {
 				this.pageTotalCount++;
 			}
 		}
