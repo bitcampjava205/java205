@@ -8,6 +8,16 @@ import guest.domain.Message;
 import guest.jdbc.JdbcUtil;
 
 public class MessageDao {
+	
+	private MessageDao() {}
+	
+	private static MessageDao dao = new MessageDao();
+	
+	public static MessageDao getInstance() {
+		return dao;
+	}
+	
+	
 
 	public int writeMessage(Connection conn, Message message) throws SQLException {
 

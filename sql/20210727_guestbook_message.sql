@@ -12,8 +12,7 @@ select * from project.guestbook_message order by regdate desc;
 select * from project.guestbook_message order by regdate desc limit 0, 3;  
 
 -- insert
-insert into project.guestbook_message (guestname, password, message)
-values ('king', '1111', 'Hello');
+insert into project.guestbook_message (guestname, password, message) values ('king', '1111', 'Hello');
 
 -- update
 update project.guestbook_message
