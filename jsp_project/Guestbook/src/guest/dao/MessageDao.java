@@ -108,6 +108,61 @@ public class MessageDao {
 		return list;
 	}
 
+
+	// messageid 로 게시물 검색
+	public Message selectByMid(Connection conn, int mid) throws SQLException {
+		
+		Message message = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String sql = "select * from guestbook_message where messageid=?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mid);
+			
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				message = new Message();
+				message.setMessageid(rs.getInt(1));
+				message.setGuestname(rs.getString(2));
+				message.setPassword(rs.getString(3));
+				message.setMessage(rs.getString(4));
+				message.setRegdate(rs.getTimestamp(5));
+			}
+			
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(pstmt);
+		}
+		
+		return message;
+	}
+
+
+
+	public int deleteMessage(Connection conn, int mid) throws SQLException {
+		
+		int resultCnt = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = "delete from guestbook_message where messageid=?";
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, mid);
+			
+			resultCnt = pstmt.executeUpdate();
+			
+		} finally {
+			JdbcUtil.close(pstmt);
+		}
+		
+		return resultCnt;
+	}
+
 	
 	
 	
