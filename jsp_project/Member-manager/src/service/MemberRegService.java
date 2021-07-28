@@ -1,5 +1,9 @@
 package service;
 
+import java.io.File;
+import java.io.UnsupportedEncodingException;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Iterator;
 import java.util.List;
 
@@ -9,6 +13,10 @@ import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.FileUploadException;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
+import dao.MemberDao;
+import domain.Member;
+import util.ConnectionProvider;
 
 public class MemberRegService {
 	
@@ -22,9 +30,12 @@ public class MemberRegService {
 		
 		int resultCnt = 0;
 		
+		Member member = new Member();
 		
+		Connection conn = null;
+		MemberDao dao = null;
 		
-		
+		try {
 		// 1. multipart 여부 확인
 		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 		
@@ -49,24 +60,65 @@ public class MemberRegService {
 				// file과 file이외의 폼을 구분
 				if(item.isFormField()){
 					// 회원 아이디, 회원 이름, 비밀번호
+					String paramName = item.getFieldName();
+					if(paramName.equals("memberid")) {
+						//String value = item.getString("utf-8");
+						member.setMemberid(item.getString("utf-8"));
+					} else if(paramName.equals("password")) {
+						member.setPassword(item.getString("utf-8"));
+					} else if(paramName.equals("membername")) {
+						member.setMembername(item.getString("utf-8"));
+					}
 					
 				} else {
-					// 사진 데이터 처리
-							
+					String uploadUri = "upload";
+					String dir = request.getSession().getServletContext().getRealPath(uploadUri);
+					
+					File saveDir = new File(dir); 
+					
+					if(!saveDir.exists()) {
+						saveDir.mkdir();
+					}
+					
+					String paramName = item.getFieldName();
+					if(paramName.equals("photo")) {
+						// 파일 이름, 사이즈
+						if(item.getName() != null && item.getSize() > 0) {
+							// 저장
+							item.write(new File(saveDir, item.getName()));
+							// DB 에 저장할 파일의 이름
+							member.setMemberphoto(item.getName());
+						}
+					}
+					
 				}
 				
 				
 			}
 			
+		}  else {
+			throw new Exception("multipart 타입이 아닙니다!");
 		}
 		
 		//////////////////////////////////////
 		// DB insert
+		// Connection, MemberDao
+		
+		conn = ConnectionProvider.getConnection();
+		dao = MemberDao.getInstance();
+		
+		resultCnt = dao.insertMember(conn, member);
 		
 		
-		
-		
-		
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 		

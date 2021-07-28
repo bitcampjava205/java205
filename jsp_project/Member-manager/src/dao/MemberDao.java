@@ -28,14 +28,24 @@ public class MemberDao {
 
 		PreparedStatement pstmt = null;
 
-		String sql = "insert into member (memberid,password,membername) values (?, ?, ?)";
+		String sql1 = "insert into member (memberid,password,membername) values (?, ?, ?)";
+		String sql2 = "insert into member (memberid,password,membername, memberphoto) values (?, ?, ?,?)";
 
 		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, member.getMemberid());
-			pstmt.setString(2, member.getPassword());
-			pstmt.setString(3, member.getMembername());
-
+			
+			if(member.getMemberphoto() == null) {
+				pstmt = conn.prepareStatement(sql1);
+				pstmt.setString(1, member.getMemberid());
+				pstmt.setString(2, member.getPassword());
+				pstmt.setString(3, member.getMembername());
+			} else {
+				pstmt = conn.prepareStatement(sql2);
+				pstmt.setString(1, member.getMemberid());
+				pstmt.setString(2, member.getPassword());
+				pstmt.setString(3, member.getMembername());
+				pstmt.setString(4, member.getMemberphoto());
+			}
+			
 			resultCnt = pstmt.executeUpdate();
 
 		} catch (SQLException e) {
@@ -69,6 +79,7 @@ public class MemberDao {
 						rs.getString(2), 
 						rs.getString(3), 
 						rs.getString(4),
+						rs.getString(5),
 						rs.getTimestamp(6)));
 			}
 
