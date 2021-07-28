@@ -21,7 +21,7 @@
 	<form action="upload.jsp" method="post" enctype="multipart/form-data">
 	
 		제목 <input type="text" name="title"> <br>
-		제목2 <input type="text2" name="title2"> <br>
+		제목2 <input type="text" name="title2"> <br>
 		파일 <input type="file" name="photo"> <br>
 		파일 <input type="file" name="file"> <br>
 		<input type="submit">
