@@ -7,11 +7,11 @@
 <%
 	//request.setCharacterEncoding("utf-8");
 %>
-<jsp:useBean id="member" class="domain.Member" />
-<jsp:setProperty property="*" name="member" />
+<%-- <jsp:useBean id="member" class="domain.Member" />
+<jsp:setProperty property="*" name="member" /> --%>
 
 <%
-	out.println(member);
+	//out.println(member);
 
 	int result = 0;
 	Connection conn = null;
