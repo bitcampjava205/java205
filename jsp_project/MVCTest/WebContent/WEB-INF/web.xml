@@ -22,6 +22,11 @@
   <servlet>
   	<servlet-name>FrontController</servlet-name>
   	<servlet-class>controller.FrontController</servlet-class>
+  	<init-param>
+  		<param-name>config</param-name>
+  		<param-value>/WEB-INF/command.propertise</param-value>
+  	</init-param>
+  	<load-on-startup>1</load-on-startup>
   </servlet>
   <servlet-mapping>
   	<servlet-name>FrontController</servlet-name>

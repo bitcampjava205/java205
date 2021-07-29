@@ -10,7 +10,7 @@ public class GreetingCommandImpl implements Command {
 		// 핵심처리....
 		request.setAttribute("result", "안녕하세요");
 		
-		return "/WEF-INF/views/greeting.jsp";
+		return "/WEB-INF/views/greeting.jsp";
 	}
 
 }
