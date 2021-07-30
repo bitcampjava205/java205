@@ -3,3 +3,4 @@
 /greeting.do=service.GreetingCommandImpl
 /date.do=service.DateCommandImpl
 /login.do=service.LoginCommandImpl
+/index.do=service.IndexCommandImpl

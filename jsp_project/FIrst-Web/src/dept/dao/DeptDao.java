@@ -53,7 +53,7 @@ public class DeptDao {
 		return list;
 	}
 
-	public int insertDept(Connection conn, Dept dept) {
+	public int insertDept(Connection conn, Dept dept) throws SQLException {
 
 		int resultCnt = 0;
 		PreparedStatement pstmt = null;
@@ -68,10 +68,10 @@ public class DeptDao {
 
 			resultCnt = pstmt.executeUpdate();
 
-		} catch (SQLException e) {
+		/*} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
+			//e.printStackTrace();
+*/		} finally {
 			JdbcUtil.close(pstmt);
 		}
 
