@@ -23,6 +23,7 @@ public class MemberRegService {
 	
 	// 기본생성자
 	public MemberRegService() {
+		System.out.println("MemberRegService()");
 	}
 	
 	public MemberRegService(int num) {

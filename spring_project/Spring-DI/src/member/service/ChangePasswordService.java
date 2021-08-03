@@ -13,7 +13,9 @@ public class ChangePasswordService {
 	}
 	
 	// 기본생성자
-	public ChangePasswordService() {}
+	public ChangePasswordService() {
+		System.out.println("ChangePasswordService()");
+	}
 	
 	public ChangePasswordService(Dao dao) {
 		this.dao = dao;

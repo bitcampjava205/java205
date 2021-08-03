@@ -24,7 +24,19 @@
 	</bean>
 	
 	<bean id="changePwService" class="member.service.ChangePasswordService">
-		<constructor-arg ref="memberDao"/>
+		<!-- <constructor-arg ref="memberDao"/> -->
+		<constructor-arg>
+		
+			<bean class="member.dao.MemberDao"/>
+			
+		</constructor-arg>
 	</bean>
 
 </beans>
+
+
+
+
+
+
+
