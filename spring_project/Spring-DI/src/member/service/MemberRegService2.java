@@ -2,6 +2,8 @@ package member.service;
 
 import java.util.Date;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 
@@ -12,8 +14,9 @@ import member.domain.RegRequest;
 
 public class MemberRegService2 {
 	
-	@Autowired
-	@Qualifier("member1")
+	//@Autowired
+	//@Qualifier("member1")
+	@Resource(name = "guestDao")
 	private Dao dao ;
 	
 	public void regMember(RegRequest request) throws Exception {

@@ -9,7 +9,7 @@
 	<context:annotation-config/>
 	
 	<!-- MemberDao bean 등록 -->
-	<bean id="memberDao" class="member.dao.MemberDao">
+	<bean id="dao" class="member.dao.MemberDao">
 		<qualifier value="member"/>
 	</bean>
 	
