@@ -22,7 +22,7 @@ public class OrderController {
 		
 		System.out.println(orderCommand);
 		
-		return null;
+		return "order/order";
 	}
 	
 	
