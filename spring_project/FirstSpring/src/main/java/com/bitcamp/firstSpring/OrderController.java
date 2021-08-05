@@ -22,6 +22,8 @@ public class OrderController {
 		
 		System.out.println(orderCommand);
 		
+		/// O
+		
 		return "order/order";
 	}
 	
