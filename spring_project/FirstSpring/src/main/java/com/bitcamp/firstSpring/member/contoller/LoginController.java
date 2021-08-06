@@ -63,15 +63,11 @@ public class LoginController {
 		model.addAttribute("uid", uid);
 		model.addAttribute("upw", upw);
 		
-		
 		System.out.println(loginRequest);
 		
 		
 		// 세션의 속성에 loginInfo 등록
 		request.getSession(false).setAttribute("loginInfo", new LoginInfo());
-		
-		
-		
 		
 		return "member/login"; // /WEB-INF/views/member/login.jsp
 	}
