@@ -33,6 +33,15 @@
 	<beans:bean id="fileDao" class="com.bitcamp.firstSpring.dao.FileUploadDao"/>
 	<beans:bean id="fileService" class="com.bitcamp.firstSpring.FileUploadService" />
 	 -->
+	 
+	 
+	 <!-- 로그인 체크 인터셉터 등록 -->
+	 <interceptors>
+	 	<interceptor>
+	 		<mapping path="/member/mypage/**"/>
+	 		<beans:bean class="com.bitcamp.firstSpring.member.intercepter.AuthCheckInterceptor"/>
+	 	</interceptor>
+	 </interceptors>
 	
 	
 	<!-- 자동 bean 등록 : 애노테이션 찾아서 bean 생성 -->
