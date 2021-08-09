@@ -1,5 +1,6 @@
 package com.bitcamp.op.member.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -38,6 +39,7 @@ public class LoginController {
 			@RequestParam(value = "reid", required = false) String reid,
 			HttpSession session,
 			HttpServletResponse response,
+			HttpServletRequest request,
 			Model model
 			) {
 		
@@ -46,7 +48,10 @@ public class LoginController {
 		model.addAttribute("loginChk", loginChk);
 		
 		String view = "member/login";
+		
 		if(chkURI(redirectUri) && loginChk) {
+			
+			redirectUri = redirectUri.substring(request.getContextPath().length());
 			view = "redirect:"+redirectUri;
 		}
 		
@@ -55,12 +60,9 @@ public class LoginController {
 	
 	private boolean chkURI(String uri) {
 		boolean chk = true;
-		
-		if(!uri.startsWith("http://localhost:8080/")) {
+		if(!uri.startsWith("/op")) {
 			chk = false;
 		}
-		
-		
 		return chk;
 	}
 	
