@@ -19,7 +19,7 @@
 	
 
 	
-	<div >
+	<div id="content">
 		<h1>Content : Index</h1>
 	</div>
 	
