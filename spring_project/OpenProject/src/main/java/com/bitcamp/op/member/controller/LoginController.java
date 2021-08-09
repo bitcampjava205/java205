@@ -5,10 +5,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 
 import com.bitcamp.op.member.service.LoginService;
 
@@ -28,12 +28,16 @@ public class LoginController {
 	public String login(
 			@RequestParam("memberid") String memberid,
 			@RequestParam("password") String password,
-			@RequestParam("reid") String reid,
+			@RequestParam(value = "reid", required = false) String reid,
 			HttpSession session,
-			HttpServletResponse response
+			HttpServletResponse response,
+			Model model
 			) {
 		
 		// 사용자가 입력한 id, pw 서비스에 전달해서 로그인 처리
+		boolean loginChk =  loginService.login(memberid, password, reid, session, response);
+		model.addAttribute("loginChk", loginChk);
+		
 		
 		return "member/login";
 	}
