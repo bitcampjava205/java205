@@ -46,13 +46,22 @@ public class LoginController {
 		model.addAttribute("loginChk", loginChk);
 		
 		String view = "member/login";
-		
-		if(redirectUri != null && loginChk) {
+		if(chkURI(redirectUri) && loginChk) {
 			view = "redirect:"+redirectUri;
 		}
 		
-		
 		return view;
+	}
+	
+	private boolean chkURI(String uri) {
+		boolean chk = true;
+		
+		if(!uri.startsWith("http://localhost:8080/")) {
+			chk = false;
+		}
+		
+		
+		return chk;
 	}
 	
 	

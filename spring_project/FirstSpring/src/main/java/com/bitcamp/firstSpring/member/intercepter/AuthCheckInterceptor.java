@@ -8,6 +8,8 @@ import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
 public class AuthCheckInterceptor extends HandlerInterceptorAdapter {
 
+	private String referer;
+	
 	@Override
 	public boolean preHandle(
 			HttpServletRequest request, 
@@ -28,7 +30,7 @@ public class AuthCheckInterceptor extends HandlerInterceptorAdapter {
 			return true;
 		}
 		
-		response.sendRedirect(request.getContextPath()+"/member/login");
+		response.sendRedirect(request.getContextPath()+"/member/logins?referer="+request.getRequestURI());
 		return false;
 	
 	}
