@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -20,7 +21,12 @@ public class LoginController {
 	private LoginService loginService;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String loginForm() {
+	public String loginForm(
+			@RequestHeader(value="referer", required = false) String rediectUri,
+			Model model
+			) {
+		
+		model.addAttribute("redirectUri", rediectUri);
 		return "member/loginForm";
 	}
 	
@@ -28,6 +34,7 @@ public class LoginController {
 	public String login(
 			@RequestParam("memberid") String memberid,
 			@RequestParam("password") String password,
+			@RequestParam(value = "redirectUri", required = false) String redirectUri,
 			@RequestParam(value = "reid", required = false) String reid,
 			HttpSession session,
 			HttpServletResponse response,
@@ -38,8 +45,14 @@ public class LoginController {
 		boolean loginChk =  loginService.login(memberid, password, reid, session, response);
 		model.addAttribute("loginChk", loginChk);
 		
+		String view = "member/login";
 		
-		return "member/login";
+		if(redirectUri != null && loginChk) {
+			view = "redirect:"+redirectUri;
+		}
+		
+		
+		return view;
 	}
 	
 	
