@@ -49,6 +49,31 @@ public class MemberRegService {
 			// 파일 저장시에 파일 이름이 같으면 덮어쓴다 -> 회원별 고유한 파일 이름을 만들자!!
 			String newFileName = regRequest.getMemberid()+System.currentTimeMillis(); 
 			//   cool123128936798123987
+			
+			// 파일 확장자 구하기
+			String fileName = regRequest.getPhoto().getOriginalFilename();
+			// 업로드 파일의 contentType
+			String contentType = regRequest.getPhoto().getContentType();
+			
+			// String[] java.lang.String.split(String regex) 
+			// : 정규식의 패턴 문자열을 전달해야하기 때문에 \\. 으로 처리
+			String[] nameTokens = fileName.split("\\.");
+			
+			// 토큰의 마지막 index의 문자열을 가져옴 : 배열의 개수-1
+			String fileType = nameTokens[nameTokens.length-1];
+			fileType = fileType.toLowerCase();
+			
+			// 이미지 파일 이외의 파일 업로드 금지
+			// 파일 확장자 체크
+			if(!(fileType.equals("jpg")||fileType.equals("png")||fileType.equals("gif")) ) {
+				// 파일 contentType 체크
+				if(!(contentType.equals("image/jpg")||contentType.equals("image/png")||contentType.equals("image/gif"))) {
+					throw new Exception("허용하지 않는 파일 타입 : " + contentType);
+				}
+			}
+			
+			// 새로운 파일이름에 확장자 추가
+			newFileName += "."+fileType;
 
 			// 새로운 File 객체
 			newFile = new File(newDir, newFileName);
@@ -74,6 +99,9 @@ public class MemberRegService {
 			if(newFile != null && newFile.exists() ) {
 				newFile.delete();
 			}
+			e.printStackTrace();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
 			e.printStackTrace();
 		} finally {
 			JdbcUtil.close(conn);
