@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.bitcamp.op.jdbc.ConnectionProvider;
 import com.bitcamp.op.jdbc.JdbcUtil;
+import com.bitcamp.op.member.dao.JdbcTemplateMemberDao;
 import com.bitcamp.op.member.dao.MemberDao;
 import com.bitcamp.op.member.domain.Member;
 import com.bitcamp.op.member.domain.MemberRegRequest;
@@ -21,8 +22,11 @@ public class MemberRegService {
 	
 	final String UPLOAD_URI = "/uploadfile";
 	
+	//@Autowired
+	//private MemberDao dao;
+	
 	@Autowired
-	private MemberDao dao;
+	private JdbcTemplateMemberDao dao;
 	
 	public int memberReg(
 			MemberRegRequest regRequest,
@@ -30,7 +34,7 @@ public class MemberRegService {
 			) {
 		
 		int resultCnt = 0;
-		Connection conn = null;
+		//Connection conn = null;
 		File newFile = null;
 		
 		try {
@@ -57,7 +61,7 @@ public class MemberRegService {
 			
 			// String[] java.lang.String.split(String regex) 
 			// : 정규식의 패턴 문자열을 전달해야하기 때문에 \\. 으로 처리
-			String[] nameTokens = fileName.split("\\.");
+			String[] nameTokens = fileName.split("\\.");   /// tet.mini2.jpg   PNG png
 			
 			// 토큰의 마지막 index의 문자열을 가져옴 : 배열의 개수-1
 			String fileType = nameTokens[nameTokens.length-1];
@@ -65,12 +69,12 @@ public class MemberRegService {
 			
 			// 이미지 파일 이외의 파일 업로드 금지
 			// 파일 확장자 체크
-			if(!(fileType.equals("jpg")||fileType.equals("png")||fileType.equals("gif")) ) {
-				// 파일 contentType 체크
-				if(!(contentType.equals("image/jpg")||contentType.equals("image/png")||contentType.equals("image/gif"))) {
-					throw new Exception("허용하지 않는 파일 타입 : " + contentType);
-				}
-			}
+//			if(!(fileType.equals("jpg")||fileType.equals("png")||fileType.equals("gif")) ) {
+//				// 파일 contentType 체크
+//				if(!(contentType.equals("image/jpg")||contentType.equals("image/png")||contentType.equals("image/gif"))) {
+//					throw new Exception("허용하지 않는 파일 타입 : " + contentType);
+//				}
+//			}
 			
 			// 새로운 파일이름에 확장자 추가
 			newFileName += "."+fileType;
@@ -78,19 +82,23 @@ public class MemberRegService {
 			// 새로운 File 객체
 			newFile = new File(newDir, newFileName);
 			
-			// 파일 저장
-			if(regRequest.getPhoto() != null && !regRequest.getPhoto().isEmpty()) {
-				regRequest.getPhoto().transferTo(newFile);
-			}
-			
-			// 2. dao 저장
-			conn = ConnectionProvider.getConnection();
 			
 			// Member 객체 생성 -> 저장된 파일의 이름을 set
 			Member member = regRequest.toMember();
-			member.setMemberphoto(newFileName);
 			
-			resultCnt = dao.insertMember(conn, member);
+			
+			// 파일 저장
+			if(regRequest.getPhoto() != null && !regRequest.getPhoto().isEmpty()) {
+				regRequest.getPhoto().transferTo(newFile);
+				member.setMemberphoto(newFileName);
+			}
+			
+			// 2. dao 저장
+			//conn = ConnectionProvider.getConnection();
+			
+			
+			
+			resultCnt = dao.insertMember(member);
 			
 		} catch (IllegalStateException | IOException e) {
 			e.printStackTrace();
@@ -103,9 +111,7 @@ public class MemberRegService {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
-		} finally {
-			JdbcUtil.close(conn);
-		}
+		} 
 		
 		return resultCnt;
 	}
