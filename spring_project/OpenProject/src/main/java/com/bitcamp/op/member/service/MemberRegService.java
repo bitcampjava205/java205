@@ -98,7 +98,15 @@ public class MemberRegService {
 			
 			
 			
-			resultCnt = dao.insertMember(member);
+			resultCnt = dao.insertMember1(member);
+			
+			System.out.println("새롭게 등록된 idx => " + member.getIdx());
+			
+			// idx 값은 자식 테이블의 insert 시 외래키로 사용
+			
+			// 자식테이블 insert 구문....
+			
+			
 			
 		} catch (IllegalStateException | IOException e) {
 			e.printStackTrace();
