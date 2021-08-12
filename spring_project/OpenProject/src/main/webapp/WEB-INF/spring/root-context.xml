@@ -32,6 +32,13 @@
 				<!--  /WEB-INF/mapper/*.xml -->
 	</bean>
 	
+	<!-- SqlSessionTemplate 등록 -->
+	<bean id="sqlSessionTemplate"
+				class="org.mybatis.spring.SqlSessionTemplate"
+	>
+		<constructor-arg ref="sqlSessionFactoryBean"/>
+	</bean>
+	
 	
 	
 	
