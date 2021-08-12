@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 
 	<insert id="insertMember"
-					parameterType="com.bitcamp.op.domain.Member"
+					parameterType="com.bitcamp.op.member.domain.Member"
 	>
 		insert into member (memberid,password,membername, memberphoto) 
 		values (#{memberid}, #{password}, #{membername}, #{memberphoto})
