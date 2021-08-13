@@ -57,7 +57,7 @@ public class Member {
 	}
 
 	public Timestamp getRegdate() {
-		return new Timestamp(regdate. getTime()-(1000*60*60*9));
+		return new Timestamp(regdate.getTime()-(1000*60*60*9));
 		//return regdate;
 	}
 
