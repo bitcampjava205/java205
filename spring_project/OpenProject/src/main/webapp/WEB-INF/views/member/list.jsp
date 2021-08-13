@@ -24,6 +24,17 @@
 	<div id="content">
 		<h2>회원 리스트</h2>
 		<hr>
+			<form>
+				검색타입
+				<select name="searchType">
+					<option value="id">아이디</option>
+					<option value="name">이름</option>
+					<option value="both">아이디+이름</option>
+				</select>
+				검색 키워드<input type="text" name="keyword">
+				<input type="submit" value="검색" >
+			</form>
+		<hr>
 
 		<table class="border">
 			<tr>

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.bitcamp.op.member.dao.Dao;
 import com.bitcamp.op.member.domain.Member;
+import com.bitcamp.op.member.domain.SearchType;
 
 @Service
 public class MemberListService {
@@ -19,5 +20,9 @@ public class MemberListService {
 	
 	public List<Member> getMemberList(){
 		return template.getMapper(Dao.class).selectAll();
+	}
+
+	public List<Member> getMemberList(SearchType searchType){
+		return template.getMapper(Dao.class).selectMember(searchType);
 	}
 }
