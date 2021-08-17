@@ -33,6 +33,12 @@ public class MemberRestController {
 	@Autowired
 	private MemberRegService regService;
 	
+	
+	
+	
+	
+	
+	
 	@RequestMapping("/members/{id}")
 	public Member getMember(
 			@PathVariable("id") int idx
@@ -60,6 +66,7 @@ public class MemberRestController {
 		System.out.println(regRequest);
 		return Integer.toString(regService.memberReg(regRequest, request));
 	}
+	
 	
 	@PostMapping("/members/reg2")
 	public String regMember2(
