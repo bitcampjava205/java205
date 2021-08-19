@@ -35,6 +35,9 @@ public class MemberRegService {
 	//@Autowired
 	//private mybatisMemberDao dao;
 	
+	@Autowired
+	private MailSenderService mailSenderService;
+	
 	private Dao dao;
 	
 	@Autowired
@@ -90,6 +93,11 @@ public class MemberRegService {
 			// idx 값은 자식 테이블의 insert 시 외래키로 사용
 
 			// 자식테이블 insert 구문....
+			
+			
+			int mailsendCnt = mailSenderService.send(member);
+			System.out.println("메일 발송 처리 횟수 : " + mailsendCnt);
+			
 
 		} catch (IllegalStateException | IOException e) {
 			e.printStackTrace();
