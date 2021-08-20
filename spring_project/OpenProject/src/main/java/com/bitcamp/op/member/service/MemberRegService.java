@@ -32,13 +32,20 @@ public class MemberRegService {
 	//@Autowired
 	//private mybatisMemberDao dao;
 	
-	@Autowired
-	private MailSenderService mailSenderService;
-	
 	private Dao dao;
 	
 	@Autowired
 	private SqlSessionTemplate template;
+	
+	
+	
+
+	@Autowired
+	private MailSenderService mailSenderService;
+	
+	
+	
+	
 	
 	
 	
