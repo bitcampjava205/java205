@@ -1,31 +1,32 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-		<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg_red" th:fragment="bootstrap_header">
-			<!-- LOGO -->
-			<a class="navbar-brand mr-auto mr-lg-0" href="#">Offcanvas navbar</a>
-	
-			<!-- 햄버거 토글 버튼 : offcanvas -->
-			<button class="navbar-toggler p-0 border-0" type="button"
-				data-toggle="offcanvas">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-	
-			<div class="navbar-collapse offcanvas-collapse"
-				id="navbarsExampleDefault">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item "><a class="nav-link"
-						href="<c:url value='/member/memberReg'/>">회원가입</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="<c:url value='/member/login'/>">로그인</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="<c:url value='/member/logout'/>">로그아웃</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="<c:url value='/member/list'/>">회원리스트</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">방명록</a></li>
-	
-				</ul>
-	
-			</div>
-		</nav>
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg_red"
+	th:fragment="bootstrap_header">
+	<!-- LOGO -->
+	<a class="navbar-brand mr-auto mr-lg-0" href="#">Offcanvas navbar</a>
+
+	<!-- 햄버거 토글 버튼 : offcanvas -->
+	<button class="navbar-toggler p-0 border-0" type="button"
+		data-toggle="offcanvas">
+		<span class="navbar-toggler-icon"></span>
+	</button>
+
+	<div class="navbar-collapse offcanvas-collapse"
+		id="navbarsExampleDefault">
+		<ul class="navbar-nav mr-auto">
+			<li class="nav-item "><a class="nav-link"
+				href="@{/member/memberReg}">회원가입</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="@{/member/login}">로그인</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="@{/member/logout}">로그아웃</a></li>
+			<li class="nav-item"><a class="nav-link"
+				href="@{/member/list}">회원리스트</a></li>
+			<li class="nav-item"><a class="nav-link" href="#">방명록</a></li>
+
+		</ul>
+
+	</div>
+</nav>
 </html>
 
