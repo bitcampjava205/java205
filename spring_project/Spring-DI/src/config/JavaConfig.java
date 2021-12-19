@@ -1,0 +1,38 @@
+package config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import member.dao.MemberDao;
+import member.service.ChangePasswordService;
+import member.service.MemberRegService;
+
+@Configuration
+public class JavaConfig {
+
+	@Bean
+	public MemberDao memberDao() {
+		return new MemberDao();
+	}
+
+//	@Bean
+//	public MemberRegService memberRegSvc() {
+//		return new MemberRegService(memberDao());
+//	}
+	
+	@Bean
+	public MemberRegService memberRegSvc() {
+		MemberRegService memberRegService  = new MemberRegService();
+		memberRegService.setMemberDao(memberDao());
+		memberRegService.setNum(1);
+		return memberRegService;
+	}
+
+	@Bean
+	public ChangePasswordService changePwoSvc() {
+		return new ChangePasswordService(memberDao());
+	}
+
+
+
+}

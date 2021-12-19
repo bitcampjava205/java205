@@ -18,7 +18,4 @@ public interface Dao {
 	// 전체 데이터 출력
 	Collection<Member> selectAll();
 	
-	
-	
-	
 }

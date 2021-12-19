@@ -3,6 +3,7 @@ package member.service;
 import java.util.Date;
 
 import member.dao.Dao;
+import member.dao.MemberDao;
 import member.domain.Member;
 import member.domain.RegRequest;
 
@@ -63,5 +64,17 @@ public class MemberRegService {
 		
 		dao.insert(newMember);
 	}
+
+
+	public void setMemberDao(MemberDao memberDao) {
+		this.dao=memberDao;
+	}
+
+
+	public void setNum(int num) {
+		this.num = num;
+	}
+	
+	
 
 }
