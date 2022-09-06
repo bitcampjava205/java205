@@ -28,11 +28,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectByIdPw"					
 					resultType="com.bitcamp.op.member.domain.Member"
 	>
-		select * from member where memberid=#{param1} and password=#{param2} 
+		select * from member where uid=#{param1} and upw=#{param2} 
 	</select>
 	
 	<select id="selectById" resultType="int">
-		select count(*) from member where memberid=#{mid}
+		select count(*) from member where uid=#{mid}
 	</select>
 	
 	<select id="selectByIdx"
@@ -52,7 +52,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					keyProperty="idx"
 	>
 		
-		insert into member (memberid, password, membername, memberphoto)
+		insert into member (uid, upw, uname, uphoto)
 		values (#{memberid}, #{password}, #{membername}, #{memberphoto})
 	
 	</insert>
@@ -61,7 +61,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					parameterType="com.bitcamp.op.member.domain.Member"
 	>
 		update member
-		set membername = #{membername}, password = #{password}
+		set uname = #{membername}, upw = #{password}
 		where idx=#{idx}
 		
 	</update>

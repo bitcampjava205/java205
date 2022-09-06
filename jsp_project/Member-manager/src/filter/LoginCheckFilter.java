@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 public class LoginCheckFilter implements Filter {
@@ -38,8 +39,9 @@ public class LoginCheckFilter implements Filter {
 			chain.doFilter(request, response);
 			// 다음 필터를 실행, 현재 필터가 마지막 필터이면 실제 요청을 처리
 		} else {
-			RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
-			dispatcher.forward(request, response);
+			//RequestDispatcher dispatcher = request.getRequestDispatcher(viewPage);
+			//dispatcher.forward(request, response);
+			((HttpServletResponse)response).sendRedirect("/Member-manager/loginForm.jsp");
 		}
 
 		// 필터를 이용한 응답 데이터 처리 : response

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,55 +17,42 @@ import org.springframework.web.multipart.MultipartFile;
 import com.bitcamp.op.member.dao.Dao;
 import com.bitcamp.op.member.domain.Member;
 import com.bitcamp.op.member.domain.MemberAddress;
-import com.bitcamp.op.member.domain.MemberRequestAddress;
 import com.bitcamp.op.member.domain.RegRequest;
 import com.bitcamp.op.util.AES256Util;
 import com.bitcamp.op.util.Sha256;
 
-@Service
-public class MemberRegService {
+@Service("memberRegService")
+public class MemberRegService implements MemberService {
 
 	final String UPLOAD_URI = "/uploadfile";
 
 	// @Autowired
 	// private MemberDao dao;
 
-	//@Autowired
-	//private JdbcTemplateMemberDao dao;
-	
-	//@Autowired
-	//private mybatisMemberDao dao;
-	
+	// @Autowired
+	// private JdbcTemplateMemberDao dao;
+
+	// @Autowired
+	// private mybatisMemberDao dao;
+
 	private Dao dao;
-	
+
 	@Autowired
 	private SqlSessionTemplate template;
-	
-	
-	
 
 	@Autowired
 	private MailSenderService mailSenderService;
-	
-	
-	
-	
-	
-	
-	
-	
 
 	@Autowired
 	private Sha256 sha256;
-	
+
 	@Autowired
-	private AES256Util aes256Util; 
-	
+	private AES256Util aes256Util;
+
 	@Autowired
-	private BCryptPasswordEncoder cryptPasswordEncoder; 
-	
-	
-	
+	private BCryptPasswordEncoder cryptPasswordEncoder;
+
+	@Override
 	@Transactional
 	public int memberReg(RegRequest regRequest, HttpServletRequest request) {
 
@@ -79,7 +67,8 @@ public class MemberRegService {
 			Member member = regRequest.getMemberRegRequest().toMember();
 
 			// 파일 저장
-			if (regRequest.getMemberRegRequest().getPhoto() != null && !regRequest.getMemberRegRequest().getPhoto().isEmpty()) {
+			if (regRequest.getMemberRegRequest().getPhoto() != null
+					&& !regRequest.getMemberRegRequest().getPhoto().isEmpty()) {
 
 				// 새로운 저장 폴더 : File
 				File newDir = new File(request.getSession().getServletContext().getRealPath(UPLOAD_URI));
@@ -90,9 +79,8 @@ public class MemberRegService {
 					System.out.println("저장 폴더를 생성했습니다.");
 				}
 				// 파일 저장시에 파일 이름이 같으면 덮어쓴다 -> 회원별 고유한 파일 이름을 만들자!!, 새로운 파일이름에 확장자 추가
-				String newFileName = regRequest.getMemberRegRequest().getMemberid() 
-						+ System.currentTimeMillis()
-						+ "."+chkFileType(regRequest.getMemberRegRequest().getPhoto());
+				String newFileName = regRequest.getMemberRegRequest().getMemberid() + System.currentTimeMillis() + "."
+						+ chkFileType(regRequest.getMemberRegRequest().getPhoto());
 				// cool123128936798123987
 
 				// 새로운 File 객체
@@ -105,11 +93,11 @@ public class MemberRegService {
 			}
 
 			//////////////////////////////////////////////////////////////////////////
-			//  암호화 처리 코드
+			// 암호화 처리 코드
 			//////////////////////////////////////////////////////////////////////////
-			
-			System.out.println("암호화 : " + sha256.encrypt(member.getPassword()) );
-			
+
+			System.out.println("암호화 : " + sha256.encrypt(member.getPassword()));
+
 			// AES256 으로 암호화된 문자열 : insert or update
 			String epw = aes256Util.encrypt(member.getPassword());
 			// AES256으로 복호화된 문자열 : select
@@ -119,7 +107,7 @@ public class MemberRegService {
 			System.out.println(epw);
 			System.out.println("AES256으로 복호화된 문자열");
 			System.out.println(ppw);
-			
+
 			System.out.println("--------------------------");
 			System.out.println("Spring Security BCryptPasswordEncoder 이용한 암호화");
 			String securityPw = cryptPasswordEncoder.encode(member.getPassword());
@@ -127,23 +115,10 @@ public class MemberRegService {
 			System.out.println("비밀번호 비교 메소드 : matches");
 			System.out.println(cryptPasswordEncoder.matches("111", securityPw));
 			System.out.println(cryptPasswordEncoder.matches(member.getPassword(), securityPw));
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+
 			// 2. dao 저장
 			// conn = ConnectionProvider.getConnection();
-			
+
 			dao = template.getMapper(Dao.class);
 
 			resultCnt = dao.insertMember(member);
@@ -153,28 +128,22 @@ public class MemberRegService {
 			// idx 값은 자식 테이블의 insert 시 외래키로 사용
 
 			// 자식테이블 insert 구문....
-			
-			
+
 			MemberAddress memberAddress = regRequest.getMemberRequestAddress().toMemberAddress();
-			
-			
-			if(memberAddress.formValidate()) {
+
+			if (memberAddress.formValidate()) {
 				// member.getIdx() : 새롭게 등록된 idx
-				
+
 				memberAddress.setMemberidx(member.getIdx());
 				memberAddress.setMemberidx(100);
-				
+
 				resultCnt *= dao.insertAddress(memberAddress);
-				
+
 				System.out.println(resultCnt);
 			}
-			
-			
-			
-			
+
 			int mailsendCnt = mailSenderService.send(member);
 			System.out.println("메일 발송 처리 횟수 : " + mailsendCnt);
-			
 
 		} catch (IllegalStateException | IOException e) {
 			e.printStackTrace();
@@ -199,7 +168,8 @@ public class MemberRegService {
 
 		// 업로드 파일의 contentType
 		String contentType = file.getContentType();
-		if (!(contentType.equals("image/jpeg") ||contentType.equals("image/jpg") || contentType.equals("image/png") || contentType.equals("image/gif"))) {
+		if (!(contentType.equals("image/jpeg") || contentType.equals("image/jpg") || contentType.equals("image/png")
+				|| contentType.equals("image/gif"))) {
 			throw new Exception("허용하지 않는 파일 타입 : " + contentType);
 		}
 
@@ -218,6 +188,8 @@ public class MemberRegService {
 		if (!(extension.equals("jpg") || extension.equals("png") || extension.equals("gif"))) {
 			throw new Exception("허용하지 않는 파일 확장자 타입 : " + contentType);
 		}
+
+		
 
 		return extension;
 	}

@@ -85,6 +85,12 @@
 			<scope>runtime</scope>
 		</dependency>
 
+
+
+
+
+
+
 		<!-- @Inject -->
 		<dependency>
 			<groupId>javax.inject</groupId>
@@ -116,7 +122,7 @@
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
 			<version>4.7</version>
-			<scope>test</scope>
+			
 		</dependency>
 
 		<!-- 1. 파일 업로드 2. 데이터베이스 ( 드라이버 ) -->
@@ -168,17 +174,17 @@
 			<artifactId>mybatis-spring</artifactId>
 			<version>2.0.6</version>
 		</dependency>
-		
-		
-		
+
+
+
 
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-tx</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-		
-		
+
+
 
 
 		<!-- jackson-databind -->
@@ -187,9 +193,9 @@
 			<artifactId>jackson-databind</artifactId>
 			<version>2.12.0</version>
 		</dependency>
-		
-		
-		
+
+
+
 		<!-- javax.mail/mail -->
 		<dependency>
 			<groupId>javax.mail</groupId>
@@ -221,14 +227,14 @@
 			<artifactId>spring-security-web</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-		
+
 		<!--스프링시큐리티 core 라이브러리 -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-core</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-		
+
 		<!--스프링시큐리티 config 라이브러리 -->
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -243,6 +249,11 @@
 
 
 
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-test</artifactId>
+			<version>${org.springframework-version}</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>

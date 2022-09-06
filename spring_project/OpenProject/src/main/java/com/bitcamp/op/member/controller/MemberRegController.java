@@ -9,14 +9,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.bitcamp.op.member.domain.RegRequest;
-import com.bitcamp.op.member.service.MemberRegService;
+import com.bitcamp.op.member.service.MemberService;
 
 @Controller
 @RequestMapping("/member/memberReg")
 public class MemberRegController {
 	
 	@Autowired
-	private MemberRegService regService;
+	private MemberService memberRegService;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String regForm() {
@@ -33,7 +33,7 @@ public class MemberRegController {
 		System.out.println(regRequest);
 		
 		//int result = 0;
-		int result = regService.memberReg(regRequest, request);
+		int result = memberRegService.memberReg(regRequest, request);
 		
 		model.addAttribute("result", result);
 		
